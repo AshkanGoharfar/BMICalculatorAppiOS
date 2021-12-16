@@ -31,7 +31,6 @@ class ViewController: UIViewController {
     private let realmDB = try! Realm()
     private var data = [BMIListObject]()
     
-    
     @IBOutlet var datePickerItem: UIDatePicker!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
@@ -48,10 +47,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let realmDB = try! Realm()
-//        try! realmDB.write {
-//          realmDB.deleteAll()
-//        }
+
         title = "Personal Information Screen"
         view.backgroundColor = .systemGray6
         
@@ -60,7 +56,6 @@ class ViewController: UIViewController {
         buttonDone.backgroundColor = .systemMint
         buttonDone.setTitle("Done", for: .normal)
         buttonDone.addTarget(self, action: #selector(didTapDoneButton), for: .touchUpInside)
-//        datePickerItem.setDate(Date(), animated: true)
         }
     
     
@@ -74,12 +69,9 @@ class ViewController: UIViewController {
 
 
         if let weight = weightTextField.text, !weight.isEmpty{
-//            let dateIssued = Date().timeIntervalSinceNow
-//            let calendar = Calendar.current
             realmDB.beginWrite()
             
             let newItem = BMIListObject()
-//            newItem.date = date
             newItem.name = nameTextField.text!
             newItem.age = ageTextField.text!
             newItem.id = ""
@@ -87,15 +79,17 @@ class ViewController: UIViewController {
             newItem.weight = weightTextField.text!
             newItem.height = heightTextField.text!
             newItem.currentDate = datePickerItem.date
-            newItem.currentBMIImperial = calculateBMIImperial()
-            newItem.currentBMIMetric = calculateBMIMetric()
             newItem.currentBMIMessage = showBMIMessage()
 
             if (bMITypeLabel.text == "Imperial"){
                 newItem.scroingType = false
+                newItem.currentBMIImperial = calculateBMIImperial()
+                newItem.currentBMIMetric = ""
             }
             else if (bMITypeLabel.text == "Metric"){
                 newItem.scroingType = true
+                newItem.currentBMIMetric = calculateBMIMetric()
+                newItem.currentBMIImperial = ""
             }
 
             realmDB.add(newItem)
@@ -116,6 +110,8 @@ class ViewController: UIViewController {
         bMITypeLabel.text = "Metric"
         weightTypeLabel.text = "(Kilograms)"
         heightTypeLabel.text = "(Meters)"
+        currentBMIValue.text = ""
+        bMIMessageString.text = ""
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -136,6 +132,8 @@ class ViewController: UIViewController {
         bMITypeLabel.text = "Metric"
         weightTypeLabel.text = "(Kilograms)"
         heightTypeLabel.text = "(Meters)"
+        currentBMIValue.text = ""
+        bMIMessageString.text = ""
     }
         
     
@@ -149,7 +147,6 @@ class ViewController: UIViewController {
             bMITypeLabel.text = "Imperial"
             weightTypeLabel.text = "(Pounds)"
             heightTypeLabel.text = "(Inches)"
-
         }
     }
     
