@@ -13,6 +13,7 @@
 		419D974F276B24EC00AB802C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419D974D276B24EC00AB802C /* Main.storyboard */; };
 		419D9751276B24F000AB802C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 419D9750276B24F000AB802C /* Assets.xcassets */; };
 		419D9754276B24F000AB802C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419D9752276B24F000AB802C /* LaunchScreen.storyboard */; };
+		E11F8E4E692DEEA505AFB59D /* Pods_BMICalculatorAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4A75B104268102AE00C601 /* Pods_BMICalculatorAppiOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		419D9750276B24F000AB802C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		419D9753276B24F000AB802C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		419D9755276B24F000AB802C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A2E6D78B1C244FBEDBF390D /* Pods-BMICalculatorAppiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMICalculatorAppiOS.release.xcconfig"; path = "Target Support Files/Pods-BMICalculatorAppiOS/Pods-BMICalculatorAppiOS.release.xcconfig"; sourceTree = "<group>"; };
+		8C4A75B104268102AE00C601 /* Pods_BMICalculatorAppiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMICalculatorAppiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC6EEB59622FEBD2C3B9347D /* Pods-BMICalculatorAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMICalculatorAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-BMICalculatorAppiOS/Pods-BMICalculatorAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E11F8E4E692DEEA505AFB59D /* Pods_BMICalculatorAppiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CC38316326297B6CC6DF2CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C4A75B104268102AE00C601 /* Pods_BMICalculatorAppiOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		419D973B276B24EC00AB802C = {
 			isa = PBXGroup;
 			children = (
 				419D9746276B24EC00AB802C /* BMICalculatorAppiOS */,
 				419D9745276B24EC00AB802C /* Products */,
+				DBCC7E5A64980120BE301D53 /* Pods */,
+				0CC38316326297B6CC6DF2CE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,16 @@
 			path = BMICalculatorAppiOS;
 			sourceTree = "<group>";
 		};
+		DBCC7E5A64980120BE301D53 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FC6EEB59622FEBD2C3B9347D /* Pods-BMICalculatorAppiOS.debug.xcconfig */,
+				6A2E6D78B1C244FBEDBF390D /* Pods-BMICalculatorAppiOS.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 419D9758276B24F000AB802C /* Build configuration list for PBXNativeTarget "BMICalculatorAppiOS" */;
 			buildPhases = (
+				AB7B1A30931FFB206AD968D8 /* [CP] Check Pods Manifest.lock */,
 				419D9740276B24EC00AB802C /* Sources */,
 				419D9741276B24EC00AB802C /* Frameworks */,
 				419D9742276B24EC00AB802C /* Resources */,
+				FF4F3B5CE31CF7088069542D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AB7B1A30931FFB206AD968D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BMICalculatorAppiOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF4F3B5CE31CF7088069542D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BMICalculatorAppiOS/Pods-BMICalculatorAppiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BMICalculatorAppiOS/Pods-BMICalculatorAppiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BMICalculatorAppiOS/Pods-BMICalculatorAppiOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		419D9740276B24EC00AB802C /* Sources */ = {
@@ -284,6 +353,7 @@
 		};
 		419D9759276B24F000AB802C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC6EEB59622FEBD2C3B9347D /* Pods-BMICalculatorAppiOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -312,6 +382,7 @@
 		};
 		419D975A276B24F000AB802C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A2E6D78B1C244FBEDBF390D /* Pods-BMICalculatorAppiOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
