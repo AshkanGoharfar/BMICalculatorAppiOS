@@ -13,13 +13,11 @@ class BMITableViewController: UIViewController, UITableViewDelegate ,UITableView
     public var data = [BMIListObject]()
     @IBOutlet var table: UITableView!
     private let realmDB = try! Realm()
-//    data = realmDB.objects(BMIListObject)
+    public var deletionHandler: (() -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         render()
-//        data = realmDB.objects(ToDoListObject.self).map({ $0 })
         table.reloadData()
-//        switchTaskIsComplete = false
         table.delegate = self
         table.dataSource = self
     }
@@ -36,15 +34,6 @@ class BMITableViewController: UIViewController, UITableViewDelegate ,UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("Here :::::::::::::::::")
-        print(indexPath.row)
-        print(data[indexPath.row].weight)
-//        indexPathRow = indexPath.row
-//        indexPathList.append(indexPath)
-//        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-//        if cell == nil {
-//            cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "cell")
-//        }
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "cell")
@@ -60,41 +49,44 @@ class BMITableViewController: UIViewController, UITableViewDelegate ,UITableView
         print(formatteddate)
         cell?.detailTextLabel?.text = formatteddate
         
-        // Code to add switch in Table cell
-        let switchView = UISwitch(frame: .zero)
-        switchView.tag = indexPath.row
-        switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
-
-//        if (data[indexPath.row]. == true) {
-//            cell?.detailTextLabel?.text = "Completed"
-//            switchView.setOn(true, animated: true)
-//        }
-//        else if (data[indexPath.row].isCompleted == false){
-//            cell?.detailTextLabel?.text = "Pending"
-//            switchView.setOn(false, animated: true)
-//        }
-//        if (data[indexPath.row].isCompleted == true) {
-//            cell?.detailTextLabel?.text = "Completed"
-//        }
-//        else if (data[indexPath.row].isCompleted == false){
-//            cell?.detailTextLabel?.text = "Pending"
-//        }
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-//        label.center = CGPoint(x: 160, y: 285)
-//        label.textAlignment = .center
         label.text = "BMI: " + data[indexPath.row].currentBMIImperial + data[indexPath.row].currentBMIMetric
         cell!.accessoryView = label
         return cell!
     }
-
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        let item = data[indexPath.row]
-//
-//        guard let vc = storyboard?.instantiateViewController(withIdentifier: "edit") as? EditViewController else {
-//            return
-//        }
+    /**
+     * This function aims to create a swipe of left to right to show blue edit button and after pressing the edit button navigate to edit screen.
+     */
+     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+         // delete
+         let deleteSwipe = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
+         completionHandler(true)
+         self.realmDB.beginWrite()
+         self.realmDB.delete(self.data[indexPath.row])
+         try! self.realmDB.commitWrite()
+
+         // we use ? because the function is optional
+         self.deletionHandler?()
+
+        self.data.remove(at: indexPath.row)
+        self.table.deleteRows(at: [indexPath], with: .automatic)
+     }
+     deleteSwipe.image = UIImage(systemName: "trash")
+     deleteSwipe.backgroundColor = .red
+     let swipeLeftToRight = UISwipeActionsConfiguration(actions: [deleteSwipe])
+       
+       return swipeLeftToRight
+     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let item = data[indexPath.row]
+        
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "Edit") as? EditViewController else {
+            return
+        }
 //        vc.item = item
 //        vc.deletionHandler = { [weak self] in
 //            self?.refresh()
@@ -102,24 +94,12 @@ class BMITableViewController: UIViewController, UITableViewDelegate ,UITableView
 //        vc.afterEditHandler = { [weak self] in
 //            self?.refresh()
 //        }
-//
-//        vc.navigationItem.largeTitleDisplayMode = .never
-//        vc.title = item.item
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
-//
-//    @IBAction func pressedAddNewTaskButton()
-//    {
-//        guard let vc = storyboard?.instantiateViewController(withIdentifier: "enter") as? EntryViewController else {
-//            return
-//        }
-//        vc.afterSaveHandler = { [weak self] in
-//            self?.refresh()
-//        }
-//        vc.title = "New Task"
-//        vc.navigationItem.largeTitleDisplayMode = .never
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
+        
+        vc.navigationItem.largeTitleDisplayMode = .never
+        vc.title = data[indexPath.row].name
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
     
     // This function will give all of data from Realm database and will reload our tableview
     func refresh()
@@ -127,29 +107,6 @@ class BMITableViewController: UIViewController, UITableViewDelegate ,UITableView
         // Update the data according to the database
         data = realmDB.objects(BMIListObject.self).map({ $0 })
         table.reloadData()
-    }
-
-    @objc func switchChanged(_ sender: UISwitch) {
-//        indexPathRow = sender.tag
-//        if (sender.isOn){
-//            try! realmDB.write{
-//                data[indexPathRow].isCompleted = true
-//            }
-//            afterSwitchHandler?()
-//            if let cell = table.cellForRow(at: indexPathList[indexPathRow]) as? UITableViewCell{
-//                cell.detailTextLabel?.text = "Completed"
-//            }
-//        }
-//        else{
-//            try! realmDB.write{
-//                data[indexPathRow].isCompleted = false
-//            }
-//            afterSwitchHandler?()
-//            if let cell = table.cellForRow(at: indexPathList[indexPathRow]) as? UITableViewCell{
-//                cell.detailTextLabel?.text = "Pending"
-//            }
-//        }
-//        print(data[indexPathRow].isCompleted)
     }
     
     override func didReceiveMemoryWarning() {
