@@ -13,6 +13,8 @@
 		419D974F276B24EC00AB802C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419D974D276B24EC00AB802C /* Main.storyboard */; };
 		419D9751276B24F000AB802C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 419D9750276B24F000AB802C /* Assets.xcassets */; };
 		419D9754276B24F000AB802C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419D9752276B24F000AB802C /* LaunchScreen.storyboard */; };
+		419D975C276B396000AB802C /* BMITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419D975B276B396000AB802C /* BMITableViewController.swift */; };
+		419D975E276B39DD00AB802C /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419D975D276B39DD00AB802C /* EditViewController.swift */; };
 		E11F8E4E692DEEA505AFB59D /* Pods_BMICalculatorAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4A75B104268102AE00C601 /* Pods_BMICalculatorAppiOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		419D9750276B24F000AB802C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		419D9753276B24F000AB802C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		419D9755276B24F000AB802C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		419D975B276B396000AB802C /* BMITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMITableViewController.swift; sourceTree = "<group>"; };
+		419D975D276B39DD00AB802C /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		6A2E6D78B1C244FBEDBF390D /* Pods-BMICalculatorAppiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMICalculatorAppiOS.release.xcconfig"; path = "Target Support Files/Pods-BMICalculatorAppiOS/Pods-BMICalculatorAppiOS.release.xcconfig"; sourceTree = "<group>"; };
 		8C4A75B104268102AE00C601 /* Pods_BMICalculatorAppiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMICalculatorAppiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC6EEB59622FEBD2C3B9347D /* Pods-BMICalculatorAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMICalculatorAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-BMICalculatorAppiOS/Pods-BMICalculatorAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				419D9750276B24F000AB802C /* Assets.xcassets */,
 				419D9752276B24F000AB802C /* LaunchScreen.storyboard */,
 				419D9755276B24F000AB802C /* Info.plist */,
+				419D975B276B396000AB802C /* BMITableViewController.swift */,
+				419D975D276B39DD00AB802C /* EditViewController.swift */,
 			);
 			path = BMICalculatorAppiOS;
 			sourceTree = "<group>";
@@ -88,7 +94,6 @@
 				FC6EEB59622FEBD2C3B9347D /* Pods-BMICalculatorAppiOS.debug.xcconfig */,
 				6A2E6D78B1C244FBEDBF390D /* Pods-BMICalculatorAppiOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,8 +212,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				419D975E276B39DD00AB802C /* EditViewController.swift in Sources */,
 				419D974C276B24EC00AB802C /* ViewController.swift in Sources */,
 				419D9748276B24EC00AB802C /* AppDelegate.swift in Sources */,
+				419D975C276B396000AB802C /* BMITableViewController.swift in Sources */,
 				419D974A276B24EC00AB802C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
