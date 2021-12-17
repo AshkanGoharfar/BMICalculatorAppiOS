@@ -127,13 +127,20 @@ class EditViewController: UIViewController {
         guard let deletedItem = self.bMIRecord else{
             return
         }
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "BMITable") as? BMITableViewController else {
+            return
+        }
+        vc.title = "BMI Tracking Screen"
+        vc.navigationItem.largeTitleDisplayMode = .never
+
         realmDB.beginWrite()
         realmDB.delete(deletedItem)
         try! realmDB.commitWrite()
         
         // we use ? because the function is optional
         deletionHandler?()
-        navigationController?.popToRootViewController(animated: true)
+//        navigationController?.popToRootViewController(animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     
@@ -144,36 +151,7 @@ class EditViewController: UIViewController {
         vc.title = "BMI Tracking Screen"
         vc.navigationItem.largeTitleDisplayMode = .never
 
-
         if let weight = weightTextField.text, !weight.isEmpty{
-//            realmDB.beginWrite()
-//
-//            let newItem = BMIListObject()
-//            newItem.name = nameLabelEditScreen.text!
-//            newItem.age = ageLabelEditScreen.text!
-//            newItem.id = ""
-//            newItem.gender = genderLabelEditScreen.text!
-//            newItem.weight = weightTextField.text!
-//            newItem.height = heightTextField.text!
-//            newItem.currentDate = datePickerItem.date
-//            newItem.currentBMIMessage = showBMIMessage()
-//
-//            if (bMITypeLabel.text == "Imperial"){
-//                newItem.scroingType = false
-//                newItem.currentBMIImperial = calculateBMIImperial()
-//                newItem.currentBMIMetric = ""
-//            }
-//            else if (bMITypeLabel.text == "Metric"){
-//                newItem.scroingType = true
-//                newItem.currentBMIMetric = calculateBMIMetric()
-//                newItem.currentBMIImperial = ""
-//            }
-//
-//            realmDB.add(newItem)
-//            try! realmDB.commitWrite()
-//            // ? means that the completionhandler is optional
-//
-//            navigationController?.popToRootViewController(animated: true)
             let date = datePickerItem.date
             try! realmDB.write {
             bMIRecord?.currentDate = date
@@ -225,11 +203,13 @@ class EditViewController: UIViewController {
     @IBAction func resetButtonPressed(_ sender: UIButton) {
             weightTextField.text = ""
             heightTextField.text = ""
+            dateLabel.text = ""
             bMITypeLabel.text = "Metric"
             weightTypeLabel.text = "(Kilograms)"
             heightTypeLabel.text = "(Meters)"
             currentBMIValue.text = ""
             bMIMessageString.text = ""
+        
     }
     
 

@@ -9,6 +9,12 @@ import RealmSwift
 import UIKit
 
 /**
+ * This project aims to craete an iOS app for listing BMI records of the users in which when the user enters the required data, the screen will nav igate to a table view screen which includes all of the BMI records. Afterward, if the user swip each cell of the table view from left to right a delete button will apear and also if the user ptouch each cell, the screen will navigate to the edit BMI record screen.
+ */
+
+
+
+/**
  * Create To do list object for database and other purposes as it includes a tasks parameters like name of the task, description of the task and etc.
  */
 class BMIListObject: Object {
@@ -45,6 +51,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var bMIMessageString: UILabel!
     
+    public var afterEditHandler: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,7 +88,7 @@ class ViewController: UIViewController {
             newItem.weight = weightTextField.text!
             newItem.height = heightTextField.text!
             newItem.currentDate = datePickerItem.date
-            newItem.currentBMIMessage = showBMIMessage()
+//            newItem.currentBMIMessage = showBMIMessage()
 
             if (bMITypeLabel.text == "Imperial"){
                 newItem.scroingType = false
@@ -92,6 +100,8 @@ class ViewController: UIViewController {
                 newItem.currentBMIMetric = calculateBMIMetric()
                 newItem.currentBMIImperial = ""
             }
+            
+            newItem.currentBMIMessage = showBMIMessage()
 
             realmDB.add(newItem)
             try! realmDB.commitWrite()
@@ -113,6 +123,7 @@ class ViewController: UIViewController {
         heightTypeLabel.text = "(Meters)"
         currentBMIValue.text = ""
         bMIMessageString.text = ""
+        afterEditHandler?()
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -138,7 +149,7 @@ class ViewController: UIViewController {
     }
         
     
-    @IBAction func scrollingTypeSwitchPressed(_ sender: UISwitch) {
+    @IBAction func scroingTypeSwitchPressed(_ sender: UISwitch) {
         if (sender.isOn){
             bMITypeLabel.text = "Metric"
             weightTypeLabel.text = "(Kilograms)"
@@ -152,6 +163,7 @@ class ViewController: UIViewController {
     }
     
     
+    // Calculate BMI when the button is pressed.
     @IBAction func calculateBMIButtonDidPressed(_ sender: UIButton) {
         if (weightTextField.text != "" && heightTextField.text != ""){
             if (bMITypeLabel.text == "Imperial"){
@@ -163,6 +175,8 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    // Show BMI message regarding to the BMI value and the required message for each category of BMI records
     func showBMIMessage() -> String {
         if (currentBMIValue.text != ""){
             if (Double(currentBMIValue.text!)! < 16){
@@ -193,12 +207,14 @@ class ViewController: UIViewController {
         return bMIMessageString.text!
     }
     
+    // calculate BMI Imperial in the case that the user decides to enter the weight and height values in Implerial format
     func calculateBMIImperial() -> String {
         currentBMIValue.text = String(round(1000*(Double(weightTextField.text!)! * 730) / (Double(heightTextField.text!)! * Double(heightTextField.text!)!))/1000)
         showBMIMessage()
         return currentBMIValue.text!
     }
     
+    // calculate BMI Metric in the case that the user decides to enter the weight and height values in Metric format
     func calculateBMIMetric() -> String {
         currentBMIValue.text = String(round(1000*(Double(weightTextField.text!)!) / (Double(heightTextField.text!)! * Double(heightTextField.text!)!))/1000)
         showBMIMessage()

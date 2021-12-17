@@ -100,6 +100,19 @@ class BMITableViewController: UIViewController, UITableViewDelegate ,UITableView
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    @IBAction func pressedAddNewTaskButton()
+    {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "View") as? ViewController else {
+            return
+        }
+        vc.afterEditHandler = { [weak self] in
+            self?.refresh()
+        }
+        vc.title = "Personal Information Screen"
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
     
     // This function will give all of data from Realm database and will reload our tableview
     func refresh()
