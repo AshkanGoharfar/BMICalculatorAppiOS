@@ -56,6 +56,7 @@ class ViewController: UIViewController {
         buttonDone.backgroundColor = .systemMint
         buttonDone.setTitle("Done", for: .normal)
         buttonDone.addTarget(self, action: #selector(didTapDoneButton), for: .touchUpInside)
+        datePickerItem.setDate(Date(), animated: true)
         }
     
     

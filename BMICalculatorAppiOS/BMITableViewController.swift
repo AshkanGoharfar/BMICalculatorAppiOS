@@ -87,13 +87,13 @@ class BMITableViewController: UIViewController, UITableViewDelegate ,UITableView
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "Edit") as? EditViewController else {
             return
         }
-//        vc.item = item
-//        vc.deletionHandler = { [weak self] in
-//            self?.refresh()
-//        }
-//        vc.afterEditHandler = { [weak self] in
-//            self?.refresh()
-//        }
+        vc.bMIRecord = item
+        vc.deletionHandler = { [weak self] in
+            self?.refresh()
+        }
+        vc.afterEditHandler = { [weak self] in
+            self?.refresh()
+        }
         
         vc.navigationItem.largeTitleDisplayMode = .never
         vc.title = data[indexPath.row].name

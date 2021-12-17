@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		417D8D1D276BEA2D00D0C6B4 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417D8D1C276BEA2D00D0C6B4 /* EntryViewController.swift */; };
 		419D9748276B24EC00AB802C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419D9747276B24EC00AB802C /* AppDelegate.swift */; };
 		419D974A276B24EC00AB802C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419D9749276B24EC00AB802C /* SceneDelegate.swift */; };
 		419D974C276B24EC00AB802C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419D974B276B24EC00AB802C /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		417D8D1C276BEA2D00D0C6B4 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		419D9744276B24EC00AB802C /* BMICalculatorAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BMICalculatorAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		419D9747276B24EC00AB802C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		419D9749276B24EC00AB802C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				419D9755276B24F000AB802C /* Info.plist */,
 				419D975B276B396000AB802C /* BMITableViewController.swift */,
 				419D975D276B39DD00AB802C /* EditViewController.swift */,
+				417D8D1C276BEA2D00D0C6B4 /* EntryViewController.swift */,
 			);
 			path = BMICalculatorAppiOS;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				419D9748276B24EC00AB802C /* AppDelegate.swift in Sources */,
 				419D975C276B396000AB802C /* BMITableViewController.swift in Sources */,
 				419D974A276B24EC00AB802C /* SceneDelegate.swift in Sources */,
+				417D8D1D276BEA2D00D0C6B4 /* EntryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
